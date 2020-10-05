@@ -1,7 +1,7 @@
 const { cosh, e, pow } = require('../node_modules/mathjs')
 
 function func(x) {                      // Um ajudante para calcular os valores na f(x) dentro do código sem precisar
-    return Math.ceil(0.9 - 0.4*x)/x ;   // ficar repetindo a f(x) dentro do código
+    return cosh(x)- 2*pow(e, -0.3*x);   // ficar repetindo a f(x) dentro do código
 }
 
 function calcularBissecao(a, b, p) {    // Função iterativa, aceitando os pontos [a,b] e o valor da precisão (p)
@@ -34,5 +34,4 @@ function calcularBissecao(a, b, p) {    // Função iterativa, aceitando os pont
 }
 console.log(                            // Mostrar o resultado na tela de acordo com os pontos [A,B] e a precisão(P)
     calcularBissecao(-0.5, 0.5, 0.001)
-    // func(2)
 ); 
