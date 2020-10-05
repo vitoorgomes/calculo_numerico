@@ -1,10 +1,10 @@
 const { cosh, e, pow } = require('../node_modules/mathjs')
 
-function func(x) {                      // Uma função para calcular o valor de X sem precisar ficar repetindo a f(x)
-    return cosh(x)- 2*pow(e, -0.3*x);
+function func(x) {                      // Um ajudante para calcular os valores na f(x) dentro do código sem precisar
+    return Math.ceil(0.9 - 0.4*x)/x ;   // ficar repetindo a f(x) dentro do código
 }
 
-function calcularBissecao(a, b, p) {
+function calcularBissecao(a, b, p) {    // Função iterativa, aceitando os pontos [a,b] e o valor da precisão (p)
     let k = 0;                          // Contador de iterações
     let raizMedia = 0;                  // Definir um valor inicial para inicializar a raiz
 
@@ -32,4 +32,7 @@ function calcularBissecao(a, b, p) {
         k
     }
 }
-console.log(calcularBissecao(0.5, 1.5, 0.001));
+console.log(                            // Mostrar o resultado na tela de acordo com os pontos [A,B] e a precisão(P)
+    calcularBissecao(-0.5, 0.5, 0.001)
+    // func(2)
+); 
