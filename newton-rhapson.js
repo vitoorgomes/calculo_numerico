@@ -7,7 +7,7 @@ function funcDerivada(x) {                                  // Calcular a f(x) c
 }
 
 function funcFX(x) {                                        // Método para calcular o f(x) com a raiz
-    return cosh(x) - 2*pow(e, -0.3*x);                           // encontrada
+    return cosh(x) - 2*pow(e, -0.3*x);                      // encontrada
 }
 
 function corrSinal(fx) {                                    // Como não há uma função nativa para módulo
@@ -40,4 +40,4 @@ function calcularMNR(a, b, p) {
     }
 
 }
-console.log(calcularMNR(0.5,1,0.01));
+console.log(calcularMNR(0.5,1.5,0.001));
