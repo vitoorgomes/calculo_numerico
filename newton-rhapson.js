@@ -1,13 +1,13 @@
-const { derivative, pow } = require('../node_modules/mathjs');
+const { derivative, pow, cosh, e } = require('../node_modules/mathjs');
 
-const derivada = derivative('(pow(x, 3) - 9*x + 5)', 'x');
+const derivada = derivative('cosh(x) - 2*pow(e, -0.3*x)', 'x');
 
 function funcDerivada(x) {                                  // Calcular a f(x) com a fórumla de Newton-Raphson
     return x - (funcFX(x)/ derivada.evaluate({x}))
 }
 
 function funcFX(x) {                                        // Método para calcular o f(x) com a raiz
-    return (pow(x, 3) - 9*x + 5);                           // encontrada
+    return cosh(x) - 2*pow(e, -0.3*x);                           // encontrada
 }
 
 function corrSinal(fx) {                                    // Como não há uma função nativa para módulo
@@ -19,29 +19,25 @@ function corrSinal(fx) {                                    // Como não há uma
 
 function calcularMNR(a, b, p) {
     let k = 1;
-    let raizMedia = (a + b) / 2;                            // Testa o primeiro valor chute de raíz com o
-    let testeFim = 0;                                       // ponto médio
+    let raizMedia = (a + b) / 2;                            
+    let testeFim = 0;                                       
 
-    if (funcFX(raizMedia)*(-1) > p) {
-        if (derivada.toString() != '0') {                   // Antes de começar as iterações, confere se
-            while (raizMedia > p) {                         // a derivada não é igual a zero
-                k++;
-                raizMedia = funcDerivada(raizMedia);
+    if (derivada.toString() != '0') {                       // Antes de começar as iterações, confere se
+        while (raizMedia > p) {                             // a derivada não é igual a zero
+            k++;
+            raizMedia = funcDerivada(raizMedia);
 
-                testeFim = funcFX(raizMedia);
-                if (corrSinal(testeFim) < p) {
-                    raizMedia = testeFim;
-                    break;
-                }
+            testeFim = funcFX(raizMedia);
+            if (corrSinal(testeFim) < p) {
+                raizMedia = testeFim;
+                break;
             }
-
-            return { raizMedia, k };                        // Retorna o valor final da raíz e iterações
-        } else {
-            return 'A derivada não pode ser igual a 0';     
         }
+
+        return { raizMedia, k };                            // Retorna o valor final da raíz e iterações
     } else {
-        return { raizMedia, k }
+        return 'A derivada não pode ser igual a 0';     
     }
-   
+
 }
 console.log(calcularMNR(0.5,1,0.01));
