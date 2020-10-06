@@ -1,4 +1,4 @@
-const { cosh, e, pow } = require('../node_modules/mathjs')
+const { cosh, e, pow } = require('../../node_modules/mathjs');
 
 function func(x) {                      // Um ajudante para calcular os valores na f(x) dentro do código sem precisar
     return cosh(x)- 2*pow(e, -0.3*x);   // ficar repetindo a f(x) dentro do código

@@ -1,4 +1,4 @@
-const { derivative, sinh, cosh, e, pow } = require('../node_modules/mathjs');
+const { derivative, sinh, cosh, e, pow } = require('../../node_modules/mathjs');
 
 const derivada = derivative('-(1/x)*(sinh(-30*x) - sinh(15*x))', 'x');
 
