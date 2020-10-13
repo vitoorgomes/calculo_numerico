@@ -1,13 +1,17 @@
-const { pi, e, pow, sin } = require('mathjs');
+const { pi, e, pow, sin, cos } = require('mathjs');
 
-const g = 9.8;
-const c = 14;
-const v = 35;
-const t = 7;
+const a = -0.001
+const b = 1.6
+const w = 0.01*pi
 
 // Um ajudante para calcular os valores na f(x) dentro do código sem precisar repetir o código
 function func(x) {                     
-  return v - (g*x)*(1 - pow(e, (-c/x)*t))/c;
+  const ppp = (2 - pow(e, a*x));
+  const f1 = w*cos(w*x)*ppp
+  const f2 = a*pow(e, a*x)*sin(w*x);
+  const f3 = pow((2 - pow(e, a*x)), 2);
+
+  return (b*(f1*ppp + f2))/f3;
 }
 
 // Função iterativa, aceitando os pontos [a,b] e o valor da precisão (p)
@@ -50,6 +54,6 @@ function calcularBissecao(a, b, p) {
 }
 console.log(
   // Mostrar o resultado na tela de acordo com os pontos [A,B] e a precisão(P)                        
-  calcularBissecao(50, 80, 0.01)
+  calcularBissecao(-60, 1, 0.01)
   // func(1)
 ); 

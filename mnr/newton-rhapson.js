@@ -1,22 +1,27 @@
 const { derivative, sinh, cosh, e, pow } = require('../../node_modules/mathjs');
 
+// A função é declara aqui e com o auxilio da biblioteca, o método faz o cálculo da primeira derivada
 const derivada = derivative('-(1/x)*(sinh(-30*x) - sinh(15*x))', 'x');
 
-function funcDerivada(x) {                                  // Calcular a f(x) com a fórumla de Newton-Raphson
+// Calcular a f(x) com a fórumla de Newton-Raphson
+function funcDerivada(x) {                                  
     return x - (funcFX(x)/ derivada.evaluate({x}))
 }
 
-function funcFX(x) {                                        // Método para calcular o f(x) com a raiz
-    return -(1/x)*(sinh(-30*x) - sinh(15*x)) - 120;         // encontrada
+// Método para calcular o f(x) com a raiz encontrada
+function funcFX(x) {                                        
+    return -(1/x)*(sinh(-30*x) - sinh(15*x)) - 120; 
 }
 
 function calcularMNR(a, p) {
+    // Número de tentativas
     let k = 1;
     let raizMedia = a;                 
     let testeFim = 0;                                       
 
-    if (derivada.toString() != '0') {                       // Antes de começar as iterações, confere se
-        while (raizMedia > p) {                             // a derivada não é igual a zero
+    // Antes de começar as iterações, confere se a derivada não é igual a zero
+    if (derivada.toString() != '0') {                       
+        while (raizMedia > p) {                            
             k++;
             raizMedia = funcDerivada(raizMedia);
 
@@ -26,9 +31,10 @@ function calcularMNR(a, p) {
             }
         }
 
-        return { raizMedia, k };                            // Retorna o valor final da raíz e iterações
+        // Retorna o valor final da raíz e iterações
+        return { raizMedia, k };                            
     } else {
-        return 'A derivada não pode ser igual a 0';     
+        return 'A derivada não pode ser igual a 0';
     }
 
 }
